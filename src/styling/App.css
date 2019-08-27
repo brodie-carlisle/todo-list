@@ -1,0 +1,14 @@
+.App {
+  text-align: center;
+  background-color:#A9A9A9; 
+  min-height: 100vh;
+  color: #282c48;
+  /* margin: auto; */
+  
+}
+
+
+.App-link {
+  color: #61dafb;
+}
+
