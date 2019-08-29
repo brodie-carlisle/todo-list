@@ -19,11 +19,9 @@ class ToDo extends Component {
   showModal = () => {
     this.setState({ show: true });
     this.dateChange(this.state.date);
-    console.log("show modal", this.state);
   };
 
   showEditModal = () => {
-    // console.log('edit click', this.state)
     this.setState({ showEditM: true });
   };
 
@@ -46,14 +44,12 @@ class ToDo extends Component {
 
   onChange = ({ target }) => {
     this.setState({ [target.name]: target.value });
-    console.log(this.state);
   };
 
   dateChange = date => {
     const toString = date.toDateString();
     this.setState({ date });
     this.setState({ dateStr: toString });
-    console.log(toString);
   };
 
   handleSubmit = async e => {
@@ -67,7 +63,9 @@ class ToDo extends Component {
       headers: {
         "Content-Type": "application/json"
       }
-    });
+    }).then(res => res.json())
+      // .then(response => console.log('Success:', JSON.stringify(response)))
+      .catch(error => console.error('Error:', error));
     this.hideModal();
   };
 
@@ -78,13 +76,11 @@ class ToDo extends Component {
       })
       .then(myJson => {
         this.setState({ list: myJson });
-        // console.log(this.state.list)
       })
       .catch(err => console.log("error", err));
   };
 
   delete = async ID => {
-    console.log("delete req recd", this.state);
     const data = this.state;
     const url = "http://localhost:4000/" + ID;
 
@@ -109,9 +105,6 @@ class ToDo extends Component {
       },
       () => this.dateChange(this.state.date)
     );
-    console.log(this.state.date);
-    // this.dateChange(this.state.date);
-    console.log("from edit", this.state);
   };
 
   editSubmit = e => {
@@ -135,7 +128,6 @@ class ToDo extends Component {
 
   render() {
     const list = this.state.list;
-    // console.log('from below',list)
     return (
       <div>
         <h1 className="title">To Do List</h1>
@@ -150,8 +142,8 @@ class ToDo extends Component {
               <span className="due">due </span>
               <span className="date">{entry.dateStr} </span>
 
-              <button onClick={() => this.editList(entry)}>edit</button>
-              <button onClick={() => this.delete(entry._id)}>complete</button>
+              <button className="editButton" onClick={() => this.editList(entry)}>edit</button>&nbsp;
+              <button className="completeButton"onClick={() => this.delete(entry._id)}>complete</button>
             </div>
           ))}
         </h2>
@@ -165,7 +157,7 @@ class ToDo extends Component {
               size="35"
               onChange={e => this.onChange(e)}
             />
-            &nbsp;
+          
             <DatePicker
               className="calendar"
               name="date"
@@ -185,7 +177,7 @@ class ToDo extends Component {
         <EditModal
           showEditM={this.state.showEditM}
           handleEditClose={this.hideEditModal}
-        >
+        ><br/>
           <input
             className="inputBox"
             value={this.state.toDo}
@@ -201,14 +193,14 @@ class ToDo extends Component {
             onChange={this.dateChange}
             value={this.state.date}
           />
-          <br />
+          <br /><br/>
           <button
             className="button"
             type="submit"
             onClick={e => this.editSubmit(e)}
           >
             update
-          </button>
+          </button><br/><br/>
         </EditModal>
       </div>
     );

@@ -12,10 +12,21 @@
 
 .button{
   font-size: 16px;
-  border: solid;
+  /* border: solid; */
   width: 50%;
-  background-color: grey;
+  /* background-color: grey; */
+  /* color: white; */
+  font-weight: bold;
+}
+
+.completeButton{
+  background-color: red;
   color: white;
+  font-weight: bold;
+}
+
+.editButton{
+  font-weight: bold;
 }
 
 .title{

@@ -11,6 +11,8 @@ const Modal1 = ({ handleClose, show, children }) => {
         {children}
         </div>
         <button type="submit" onClick={handleClose} className="button">cancel</button>
+        <br/>
+        <br/>      
       </section>
     </div>
   );

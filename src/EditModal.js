@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import "./styling/Modal.css"
+import "./styling/Modal.css"
 
 
 const EditModal = ({ handleEditClose, showEditM, children }) =>{
@@ -11,6 +11,8 @@ const EditModal = ({ handleEditClose, showEditM, children }) =>{
         {children}
         </div>
         <button type="submit" onClick={handleEditClose} className="button">cancel</button>
+        <br/>
+        <br/>
       </section>
     </div>
   );
