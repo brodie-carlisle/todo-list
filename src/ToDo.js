@@ -5,6 +5,8 @@ import "./styling/ToDo.css";
 import DatePicker from "react-date-picker";
 import EditModal from "./EditModal";
 
+const LEADS_API = process.env.REACT_APP_LEADS_API || "http://localhost:4000"
+
 class ToDo extends Component {
   state = {
     show: false,
@@ -55,7 +57,7 @@ class ToDo extends Component {
   handleSubmit = async e => {
     e.preventDefault();
     const { date, show, list, showEditM, id, ...data } = this.state;
-    const url = "https://helio-to-do-api.herokuapp.com";
+    const url = `${LEADS_API}`;
 
     await fetch(url, {
       method: "POST",
@@ -71,7 +73,7 @@ class ToDo extends Component {
   };
 
   getList = () => {
-    fetch("https://helio-to-do-api.herokuapp.com")
+    fetch(`${LEADS_API}`)
       .then(response => {
         return response.json();
       })
@@ -83,7 +85,7 @@ class ToDo extends Component {
 
   delete = async ID => {
     const data = this.state;
-    const url = `https://helio-to-do-api.herokuapp.com/${ID}`;
+    const url = `${LEADS_API}/${ID}`;
 
     await fetch(url, {
       method: "DELETE",
@@ -110,7 +112,7 @@ class ToDo extends Component {
 
   editSubmit = e => {
     const { date, show, list, showEditM, id, ...data } = this.state;
-    const url = `https://helio-to-do-api.herokuapp.com/${this.state.id}`;
+    const url = `${LEADS_API}/${this.state.id}`;
 
     fetch(url, {
       method: "PUT",
