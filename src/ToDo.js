@@ -55,7 +55,7 @@ class ToDo extends Component {
   handleSubmit = async e => {
     e.preventDefault();
     const { date, show, list, showEditM, id, ...data } = this.state;
-    const url = "http://localhost:4000/";
+    const url = "https://helio-to-do-api.herokuapp.com";
 
     await fetch(url, {
       method: "POST",
@@ -71,7 +71,7 @@ class ToDo extends Component {
   };
 
   getList = () => {
-    fetch("http://localhost:4000/")
+    fetch("https://helio-to-do-api.herokuapp.com")
       .then(response => {
         return response.json();
       })
@@ -83,7 +83,7 @@ class ToDo extends Component {
 
   delete = async ID => {
     const data = this.state;
-    const url = "http://localhost:4000/" + ID;
+    const url = "https://helio-to-do-api.herokuapp.com" + ID;
 
     await fetch(url, {
       method: "DELETE",
@@ -110,7 +110,7 @@ class ToDo extends Component {
 
   editSubmit = e => {
     const { date, show, list, showEditM, id, ...data } = this.state;
-    const url = "http://localhost:4000/" + this.state.id;
+    const url = "https://helio-to-do-api.herokuapp.com" + this.state.id;
 
     fetch(url, {
       method: "PUT",
