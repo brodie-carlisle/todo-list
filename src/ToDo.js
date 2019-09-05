@@ -63,9 +63,10 @@ class ToDo extends Component {
       headers: {
         "Content-Type": "application/json"
       }
-    }).then(res => res.json())
+    })
+      .then(res => res.json())
       // .then(response => console.log('Success:', JSON.stringify(response)))
-      .catch(error => console.error('Error:', error));
+      .catch(error => console.error("Error:", error));
     this.hideModal();
   };
 
@@ -141,9 +142,19 @@ class ToDo extends Component {
               <span className="todo"> {entry.toDo} </span>
               <span className="due">due </span>
               <span className="date">{entry.dateStr} </span>
-
-              <button className="editButton" onClick={() => this.editList(entry)}>edit</button>&nbsp;
-              <button className="completeButton"onClick={() => this.delete(entry._id)}>complete</button>
+              <button
+                className="editButton"
+                onClick={() => this.editList(entry)}
+              >
+                edit
+              </button>
+              &nbsp;
+              <button
+                className="completeButton"
+                onClick={() => this.delete(entry._id)}
+              >
+                complete
+              </button>
             </div>
           ))}
         </h2>
@@ -157,7 +168,7 @@ class ToDo extends Component {
               size="35"
               onChange={e => this.onChange(e)}
             />
-          
+
             <DatePicker
               className="calendar"
               name="date"
@@ -177,7 +188,8 @@ class ToDo extends Component {
         <EditModal
           showEditM={this.state.showEditM}
           handleEditClose={this.hideEditModal}
-        ><br/>
+        >
+          <br />
           <input
             className="inputBox"
             value={this.state.toDo}
@@ -193,17 +205,22 @@ class ToDo extends Component {
             onChange={this.dateChange}
             value={this.state.date}
           />
-          <br /><br/>
+          <br />
+          <br />
           <button
             className="button"
             type="submit"
             onClick={e => this.editSubmit(e)}
           >
             update
-          </button><br/><br/>
+          </button>
+          <br />
+          <br />
         </EditModal>
       </div>
     );
   }
 }
 export default ToDo;
+
+
