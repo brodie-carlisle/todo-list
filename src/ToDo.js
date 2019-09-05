@@ -83,7 +83,7 @@ class ToDo extends Component {
 
   delete = async ID => {
     const data = this.state;
-    const url = `https://helio-to-do-api.herokuapp.com/${ID};
+    const url = `https://helio-to-do-api.herokuapp.com/${ID}`;
 
     await fetch(url, {
       method: "DELETE",
