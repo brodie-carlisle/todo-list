@@ -1,11 +1,10 @@
 import React, { Component } from "react";
-// import ReactDOM from "react-dom";
 import Modal1 from "./Modal";
 import "./styling/ToDo.css";
 import DatePicker from "react-date-picker";
 import EditModal from "./EditModal";
 
-const LEADS_API = process.env.REACT_APP_LEADS_API || "http://localhost:4000"
+const LEADS_API = process.env.REACT_APP_LEADS_API;
 
 class ToDo extends Component {
   state = {
@@ -50,8 +49,8 @@ class ToDo extends Component {
 
   dateChange = date => {
     const toString = date.toDateString();
-    this.setState({ date });
-    this.setState({ dateStr: toString });
+    this.setState({ date }); //sets date from form calendar input
+    this.setState({ dateStr: toString }); //changes date to str & sets state
   };
 
   handleSubmit = async e => {
@@ -91,14 +90,15 @@ class ToDo extends Component {
       method: "DELETE",
       body: JSON.stringify(data),
       headers: {
-        "Content-Type": "application/json"
+        //explain 'headers'
+        "Content-Type": "application/json" //telling API that content coming over as a string is a json obj
       }
     }).then(this.getList());
   };
 
   editList = entry => {
     this.showEditModal();
-    const toDateObj = new Date(entry.dateStr);
+    const toDateObj = new Date(entry.dateStr); //changes date back from str to obj to be compatible with calendar
 
     this.setState(
       {
@@ -106,7 +106,7 @@ class ToDo extends Component {
         date: toDateObj,
         id: entry._id
       },
-      () => this.dateChange(this.state.date)
+      () => this.dateChange(this.state.date) //forces state to update with date rec'd from DB when edit is clicked. Otherwise, date must be re-selected or it will be blank.
     );
   };
 
@@ -130,16 +130,17 @@ class ToDo extends Component {
   }
 
   render() {
-    const list = this.state.list;
+    // console.log(LEADS_API)
+    // const list = this.state.list;
     return (
-      <div>
+      <div className="main">
         <h1 className="title">To Do List</h1>
         <button className="button" type="button" onClick={this.showModal}>
           +add
         </button>
         <br />
         <h2>
-          {list.map(entry => (
+          {this.state.list.map(entry => (
             <div key={entry._id}>
               <span className="todo"> {entry.toDo} </span>
               <span className="due">due </span>
@@ -224,5 +225,3 @@ class ToDo extends Component {
   }
 }
 export default ToDo;
-
-

@@ -1,14 +1,16 @@
 .App {
+  
   text-align: center;
-  /* background-color:#A9A9A9;  */
   min-height: 100vh;
   color: #282c48;
-  /* margin: auto; */
-  
+  display: flex;
+  justify-content: center;
+  background-color: #282c48;
 }
-
-
-.App-link {
-  color: #61dafb;
+.main{
+  border-style:solid;
+  width: 70%;
+  background-color:white;
+  margin-top: 20px;
 }
 

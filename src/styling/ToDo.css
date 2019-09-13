@@ -1,60 +1,41 @@
-.calendar{
-  /* border-radius: 20px; */
-  /* background-color: grey; */
-  
-}
-
-.inputBox{
-  font-size: 21px;
+.inputBox {
+  font-size: 22px;
   width: 300px;
-  border: solid
+  border: solid;
 }
 
-.button{
+.button {
   font-size: 16px;
-  /* border: solid; */
+  /* background-color:#282c48; */
   width: 50%;
-  /* background-color: grey; */
-  /* color: white; */
+  border-style:solid;
   font-weight: bold;
 }
 
-.completeButton{
+.completeButton {
   background-color: red;
   color: white;
   font-weight: bold;
 }
 
-.editButton{
+.editButton {
   font-weight: bold;
 }
 
-.title{
+.title {
   font-size: 50px;
 }
 
-h1{
-  /* font-size: 50px; */
-}
-
-.todo{
-  /* text-align: left; */
+.todo {
   font-size: 35px;
-  
 }
 
-.date{
+.date {
   color: red;
   text-align: right;
   text-align: right;
 }
 
-.due{
+.due {
   font-size: 15px;
-}
-
-h2{
-  
-  /* vertical-align: middle; */
-  /* margin-left: 20% */
 }
