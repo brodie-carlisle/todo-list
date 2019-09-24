@@ -94,7 +94,9 @@ class ToDo extends Component {
         //header tells api what type of content is being sent. 
         "Content-Type": "application/json" //telling API that content coming over as a string is a json obj
       }
-    }).then(this.getList()).then(this.forceUpdate())
+    })
+    this.getList()
+    // .then(this.getList()).then(this.forceUpdate())
   
   };
 
