@@ -9,6 +9,7 @@
 }
 .main{
   border-style:solid;
+  border-color: grey;
   width: 70%;
   background-color:white;
   margin-top: 20px;

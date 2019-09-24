@@ -4,6 +4,7 @@ import "./styling/ToDo.css";
 import DatePicker from "react-date-picker";
 import EditModal from "./EditModal";
 
+
 const LEADS_API = process.env.REACT_APP_LEADS_API;
 
 class ToDo extends Component {
@@ -17,12 +18,12 @@ class ToDo extends Component {
     id: ""
   };
 
-  showModal = () => {
+  showModal = () => { //shows input modal
     this.setState({ show: true });
     this.dateChange(this.state.date);
   };
 
-  showEditModal = () => {
+  showEditModal = () => { //shows edit modal
     this.setState({ showEditM: true });
   };
 
@@ -47,10 +48,10 @@ class ToDo extends Component {
     this.setState({ [target.name]: target.value });
   };
 
-  dateChange = date => {
-    const toString = date.toDateString();
+  dateChange = date => { //onchange for calendar
+    const toString = date.toDateString();//changes date to str to remove extra date fields
     this.setState({ date }); //sets date from form calendar input
-    this.setState({ dateStr: toString }); //changes date to str & sets state
+    this.setState({ dateStr: toString }); //sets datestr state
   };
 
   handleSubmit = async e => {
@@ -90,15 +91,15 @@ class ToDo extends Component {
       method: "DELETE",
       body: JSON.stringify(data),
       headers: {
-        //explain 'headers'
+        //header tells api what type of content is being sent. 
         "Content-Type": "application/json" //telling API that content coming over as a string is a json obj
       }
     }).then(this.getList());
   };
 
-  editList = entry => {
+  editList = entry => { //called when 'edit' button is cliecked
     this.showEditModal();
-    const toDateObj = new Date(entry.dateStr); //changes date back from str to obj to be compatible with calendar
+    const toDateObj = new Date(entry.dateStr); //changes date back from str to obj to be compatible with calendar and set state
 
     this.setState(
       {
@@ -106,11 +107,11 @@ class ToDo extends Component {
         date: toDateObj,
         id: entry._id
       },
-      () => this.dateChange(this.state.date) //forces state to update with date rec'd from DB when edit is clicked. Otherwise, date must be re-selected or it will be blank.
+      () => this.dateChange(this.state.date) //forces state to update with date rec'd from DB when 'edit' button is clicked. Otherwise, date must be re-selected or it will be blank.
     );
   };
 
-  editSubmit = e => {
+  editSubmit = e => { //submit button within edit modal
     const { date, show, list, showEditM, id, ...data } = this.state;
     const url = `${LEADS_API}/${this.state.id}`;
 
@@ -141,7 +142,7 @@ class ToDo extends Component {
         <br />
         <h2>
           {this.state.list.map(entry => (
-            <div key={entry._id}>
+            <div key={entry._id} className="displayList">
               <span className="todo"> {entry.toDo} </span>
               <span className="due">due </span>
               <span className="date">{entry.dateStr} </span>
@@ -153,6 +154,7 @@ class ToDo extends Component {
               </button>
               &nbsp;
               <button
+                type="button"
                 className="completeButton"
                 onClick={() => this.delete(entry._id)}
               >
