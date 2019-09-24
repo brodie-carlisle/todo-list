@@ -97,7 +97,6 @@ class ToDo extends Component {
     })
     this.getList()
     // .then(this.getList()).then(this.forceUpdate())
-  
   };
 
   editList = entry => { //called when 'edit' button is cliecked
