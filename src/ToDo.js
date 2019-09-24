@@ -94,7 +94,8 @@ class ToDo extends Component {
         //header tells api what type of content is being sent. 
         "Content-Type": "application/json" //telling API that content coming over as a string is a json obj
       }
-    }).then(this.getList());
+    }).then(this.getList()).then(this.forceUpdate())
+  
   };
 
   editList = entry => { //called when 'edit' button is cliecked
@@ -131,8 +132,6 @@ class ToDo extends Component {
   }
 
   render() {
-    // console.log(LEADS_API)
-    // const list = this.state.list;
     return (
       <div className="main">
         <h1 className="title">To Do List</h1>
@@ -144,6 +143,7 @@ class ToDo extends Component {
           {this.state.list.map(entry => (
             <div key={entry._id} className="displayList">
               <span className="todo"> {entry.toDo} </span>
+              <span className="flexContainer">
               <span className="due">due </span>
               <span className="date">{entry.dateStr} </span>
               <button
@@ -160,6 +160,7 @@ class ToDo extends Component {
               >
                 complete
               </button>
+              </span>
             </div>
           ))}
         </h2>
