@@ -145,7 +145,7 @@ class ToDo extends Component {
             <div key={entry._id} className="displayList">
               <span className="todo"> {entry.toDo} </span>
               <span className="flexContainer">
-              <span className="due">due </span>
+              <span className="due"> due </span>
               <span className="date">{entry.dateStr} </span>
               <button
                 className="editButton"

@@ -43,11 +43,17 @@
 .displayList {
   /* border-style: solid; */
   display: flex;
-  /* justify-content: center; */
-  align-items: flex-start;
-  margin-left: 20%;
+  justify-content: space-between;
+  /* align-items: flex-start; */
+  margin-left: 15%;
+  margin-right: 5%;
 }
-.displayList:nth-child(even) {
+.displayList:nth-child(odd) {
   background: rgb(237, 231, 231);
 }
 
+.flexContainer{
+  /* border-style: solid; */
+  /* display: flex; */
+  /* justify-content: space-between; */
+}
